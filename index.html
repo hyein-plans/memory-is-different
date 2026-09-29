@@ -1,2 +1,250 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=./index.html"></head><body></body></html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>기억이 달라 — 사라진 별사탕</title>
+<style>
+:root{
+  --paper:#fffaf0;--paper2:#f7efdf;--ink:#51483f;--muted:#897b70;--line:#d3c3ad;
+  --lav:#8b7bb6;--lav-dark:#675b8b;--green:#6f9c77;--shadow:0 18px 48px rgba(74,61,49,.12)
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:Pretendard,"Apple SD Gothic Neo",system-ui,sans-serif;
+background:radial-gradient(circle at 10% 10%,rgba(255,255,255,.5) 0 1px,transparent 1.5px) 0 0/16px 16px,linear-gradient(135deg,#f4ecdb,#efe5d0 60%,#f7efdf)}
+button,input{font:inherit}button{cursor:pointer}
+.app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+.side{padding:24px 18px;background:rgba(255,250,240,.8);border-right:1px dashed #cbbba4;position:sticky;top:0;height:100vh}
+.brand{font-size:23px;font-weight:950}.brand small{display:block;font-size:12px;color:var(--muted);margin-top:5px}
+.side-title{font-size:11px;font-weight:900;letter-spacing:.12em;color:var(--muted);margin:24px 0 6px}
+.player{padding:9px 10px;margin-top:6px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.player.me{background:#eee9ff}.player .badge{font-size:10px;color:#8071aa;font-weight:900}
+.side-note{margin-top:22px;padding:13px;border:1px dashed var(--line);border-radius:14px;font-size:12px;line-height:1.55;color:var(--muted)}
+main{padding:26px 30px}.wrap{max-width:1080px;margin:auto}.top{display:flex;justify-content:space-between;margin-bottom:14px;font-size:12px;font-weight:900;color:var(--muted)}
+.book{position:relative;background:var(--paper);border:1px solid #dacbb7;border-radius:28px;box-shadow:var(--shadow);padding:32px;overflow:hidden}
+.book:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background:repeating-linear-gradient(0deg,transparent 0 29px,rgba(130,111,92,.07) 30px)}
+.book>*{position:relative;z-index:1}
+.kicker{font-size:11px;font-weight:950;letter-spacing:.14em;color:#8b7c6d}
+h1{font-size:38px;letter-spacing:-1px;margin:6px 0 12px}.lead{font-size:17px;line-height:1.75;max-width:820px}
+.setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}.setup-card{padding:18px;border:1px solid #d9cbbb;border-radius:18px;background:rgba(255,255,255,.62)}
+.setup-card label{display:block;font-size:11px;font-weight:950;letter-spacing:.1em;color:var(--muted);margin-bottom:9px}
+.setup-card input{width:100%;padding:13px 14px;border:1px solid #d7caba;border-radius:12px;background:#fff}
+.counts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.count{padding:12px 6px;border:1px solid #d7caba;border-radius:12px;background:#fff;font-weight:900;color:var(--ink)}
+.count.sel{background:#eee9ff;border-color:#9586c0;color:#625487}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}.step{padding:16px;border:1px solid #dacdbb;border-radius:16px;background:rgba(255,255,255,.58);font-size:13px;line-height:1.55}
+.note{margin-top:18px;padding:14px 16px;border-radius:16px;background:#f1ecff;border:1px solid #cfc5ef;font-size:13px;line-height:1.6}
+.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}.btn{border:0;border-radius:14px;padding:13px 18px;background:#5b514a;color:#fff;font-weight:900;box-shadow:0 6px 0 #3f3833}
+.btn.lav{background:var(--lav);box-shadow:0 6px 0 var(--lav-dark)}.btn.soft{background:#fff;color:#5b514a;border:1px solid #d7cbbb;box-shadow:none}.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.hero,.fact-media{margin-top:24px;border-radius:22px;overflow:hidden;border:2px solid #bda98d;background:#f5eddd}.hero img,.fact-media img{width:100%;display:block}
+.status-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.pill{padding:7px 10px;border-radius:999px;background:#fff;border:1px solid #ddd0bf;font-size:12px;font-weight:850}
+.memory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:22px}
+.memory{background:#fffdf7;border:2px solid #b9a793;border-radius:20px;padding:18px;min-height:300px;box-shadow:0 10px 18px rgba(79,68,59,.08);transform:rotate(-.4deg)}
+.memory:nth-child(even){transform:rotate(.5deg)}.memory-art{height:180px;border-radius:15px;background:#f5ecdc;overflow:hidden;border:1px solid #e1d3bf;position:relative}
+.memory-art img{width:100%;height:100%;object-fit:cover;filter:saturate(.18) sepia(.22) contrast(.92) blur(.25px);opacity:.76;transform:scale(1.02)}
+.memory-art:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,250,240,.2),rgba(230,218,199,.2))}
+.memory small{display:block;margin-top:14px;font-size:11px;font-weight:950;letter-spacing:.12em;color:#8a7c70}.memory p{font-size:18px;line-height:1.6;font-weight:850;margin:10px 0 0}
+.play{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px}.chat{min-height:560px;border:1px solid #d9cbb8;border-radius:22px;background:rgba(255,253,247,.85);display:flex;flex-direction:column;overflow:hidden}
+.chathead{padding:16px 18px;border-bottom:1px dashed #d2c3b0;font-weight:900;display:flex;justify-content:space-between}.timer{font-variant-numeric:tabular-nums;color:#7a6a60}
+.messages{flex:1;padding:18px;overflow:auto}.msg{margin-bottom:12px}.msg b{font-size:12px;color:#7d6f65}.bubble{display:inline-block;margin-top:4px;background:#fff;border:1px solid #e1d5c6;border-radius:14px;padding:10px 12px;line-height:1.45}
+.composer{display:flex;gap:8px;padding:14px;border-top:1px dashed #d2c3b0}.composer input{flex:1;padding:12px;border:1px solid #d9ccbc;border-radius:12px;background:#fff}
+.stack{display:flex;flex-direction:column;gap:12px}.mini{background:#fffdf7;border:1px solid #d8cbbb;border-radius:16px;padding:12px}.mini-art{height:100px;border-radius:12px;overflow:hidden;background:#f4ecdd}.mini-art img{width:100%;height:100%;object-fit:cover;filter:saturate(.18) sepia(.2);opacity:.76}.mini p{font-size:13px;line-height:1.5;font-weight:750;margin:8px 0 0}
+.ready{padding:16px;border:1px solid #d6c8b5;border-radius:16px;background:#fffdf7}.ready-title{font-weight:950}.ready-desc{font-size:12px;color:var(--muted);margin-top:4px}.ready-row{display:flex;justify-content:space-between;padding:7px 0;font-size:13px}.ready-row .ok{color:var(--green);font-weight:900}
+.fact{margin-top:22px;border:2px solid #aaa0c7;border-radius:20px;overflow:hidden;background:#f1ecff}.fact p{padding:18px;margin:0;font-size:17px;line-height:1.7}
+.final-talk{padding:16px;border:1px solid #cfc5ef;border-radius:16px;background:#f7f3ff;margin-bottom:14px;font-size:13px;line-height:1.55}
+.votegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.vote{padding:18px;border:2px solid #d5c7b4;border-radius:16px;background:#fffdf8;font-weight:900}.vote.sel{background:#eee9ff;border-color:#897ab5}
+.result-name{font-size:48px;font-weight:950;margin:8px 0 6px}.result-banner{padding:14px 16px;border-radius:16px;margin:14px 0;font-weight:900}.result-banner.win{background:#e7f2e8;border:1px solid #bcd5c1;color:#52775a}.result-banner.lose{background:#f4e7e2;border:1px solid #dfc5ba;color:#805e51}
+.reveal{margin-top:20px;border-top:1px dashed #cdbda8;padding-top:18px}.reveal h3{margin:0 0 12px}.assignments{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.assign{padding:12px;border:1px solid #d9cbbb;border-radius:14px;background:rgba(255,255,255,.55);font-size:13px;line-height:1.5}.assign.corrupted{border-color:#b8add8;background:#f2eeff}.assign b{display:block;margin-bottom:5px}
+.hidden{display:none!important}
+@media(max-width:900px){.app{grid-template-columns:1fr}.side{display:none}main{padding:18px}.setup-grid,.memory-grid,.play{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.votegrid{grid-template-columns:1fr 1fr}.assignments{grid-template-columns:1fr}h1{font-size:31px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="brand">기억이 달라<small>#01 사라진 별사탕 · SET A</small></div>
+  <div class="side-title">PLAYERS</div>
+  <div id="sidePlayers"></div>
+  <div class="side-note" id="sideNote">닉네임과 인원을 선택하고 게임을 시작해봐.</div>
+</aside>
+<main><div class="wrap">
+<div class="top"><span id="crumb">GAME GUIDE</span><span id="phase">시작 전</span></div>
+
+<section id="guide" class="book">
+  <div class="kicker">HOW TO PLAY</div>
+  <h1>이번 판의 기억을 나눠볼게</h1>
+  <div class="lead">모두에게 <b>두 개의 기억</b>이 주어져. 그런데 한 사람의 기억 두 조각만 서로 다른 장면과 뒤섞여 있어. 누구도 자신이 그 사람인지 알 수 없어.</div>
+  <div class="setup-grid">
+    <div class="setup-card"><label>NICKNAME</label><input id="nickname" maxlength="12" placeholder="내 닉네임 입력"></div>
+    <div class="setup-card"><label>PLAYER COUNT</label><div class="counts" id="counts"></div></div>
+  </div>
+  <div class="steps">
+    <div class="step"><b>01 기억 1</b><br>첫 번째 기억을 받고 비교해.</div>
+    <div class="step"><b>02 FACT 1</b><br>전원이 준비하면 함께 확인해.</div>
+    <div class="step"><b>03 기억 2 + FACT 2</b><br>두 번째 기억까지 더해 다시 추리해.</div>
+    <div class="step"><b>04 최종 지목</b><br>기억이 뒤섞인 한 명을 골라.</div>
+  </div>
+  <div class="note"><b>현재는 멀티플레이 연결 전 테스트 버전!</b> 다른 플레이어의 준비 상태는 자동으로 시뮬레이션돼. 카드 배분 로직은 실제 3~6인 규칙대로 동작해.</div>
+  <div class="actions"><button class="btn lav" onclick="startGame()">카드 섞고 시작하기</button></div>
+</section>
+
+<section id="intro" class="book hidden">
+  <div class="kicker">CASE 01</div><h1>사라진 별사탕</h1>
+  <div class="lead">어젯밤 열린 작은 별빛 파티. 테이블 한가운데 있던 별사탕 병이 잠시 사라졌다가 창가에서 발견됐어. 그런데 당시 상황을 떠올려보니 사람들의 기억이 조금씩 달라.</div>
+  <div class="status-strip"><span class="pill" id="introCount"></span><span class="pill" id="introCards"></span><span class="pill">오염된 기억의 주인 1명</span></div>
+  <div class="hero"><img src="assets/hero/star-candy-party.webp" alt="달빛 아래 별사탕 파티"></div>
+  <div class="note"><b>목표</b> · 네 기억도 정상인지 오염인지 알 수 없어. 사람들의 말을 비교해서 한 명을 찾아봐.</div>
+  <div class="actions"><button class="btn" onclick="openMemory1()">첫 번째 기억 확인</button></div>
+</section>
+
+<section id="mem1" class="book hidden">
+  <div class="kicker">MY MEMORY · 01</div><h1>첫 번째 기억</h1>
+  <div class="memory-grid" id="mem1Grid"></div>
+  <div class="note">그림은 정확한 기록이 아니라 <b>흐릿한 기억의 이미지</b>야. 판단은 카드 문장을 중심으로 해줘.</div>
+  <div class="actions"><button class="btn" onclick="showTalk(1)">대화 시작</button></div>
+</section>
+
+<section id="talk1" class="hidden">
+  <div class="play">
+    <div class="chat"><div class="chathead"><span>ROUND 1 · 첫 번째 기억 비교</span><span class="timer" id="timer1">01:30</span></div><div class="messages" id="msgs1"><div class="msg"><b>시스템</b><br><span class="bubble">각자 가진 첫 번째 기억을 비교해봐.</span></div></div><div class="composer"><input id="input1" placeholder="메시지 입력"><button class="btn" onclick="send(1)">보내기</button></div></div>
+    <div class="stack"><div class="mini" id="mini1"></div><div class="ready"><div class="ready-title">FACT 01을 볼 준비가 됐어?</div><div class="ready-desc">전원이 준비되면 동시에 공개돼.</div><div id="ready1"></div><button id="readyBtn1" class="btn lav" style="width:100%;margin-top:12px" onclick="readyUp(1)">나도 준비됐어</button></div></div>
+  </div>
+</section>
+
+<section id="fact1" class="book hidden">
+  <div class="kicker">FACT · 01</div><h1>남아 있던 파티 사진</h1>
+  <div class="fact"><div class="fact-media"><img src="assets/facts/fact-01-party-photo.webp" alt="파티 사진"></div><p>사진 속 별사탕 병에는 <b>파란 리본</b>이, 바로 옆 케이크 상자에는 <b>빨간 리본</b>이 묶여 있어.</p></div>
+  <div class="actions"><button class="btn" onclick="openMemory2()">두 번째 기억 확인</button></div>
+</section>
+
+<section id="mem2" class="book hidden">
+  <div class="kicker">MY MEMORY · 02</div><h1>두 번째 기억</h1>
+  <div class="memory-grid" id="mem2Grid"></div>
+  <div class="actions"><button class="btn" onclick="showTalk(2)">다시 대화하기</button></div>
+</section>
+
+<section id="talk2" class="hidden">
+  <div class="play">
+    <div class="chat"><div class="chathead"><span>ROUND 2 · 두 번째 기억까지 비교</span><span class="timer" id="timer2">01:30</span></div><div class="messages" id="msgs2"><div class="msg"><b>시스템</b><br><span class="bubble">FACT 01과 두 번째 기억까지 함께 비교해봐.</span></div></div><div class="composer"><input id="input2" placeholder="메시지 입력"><button class="btn" onclick="send(2)">보내기</button></div></div>
+    <div class="stack" id="round2Stack"></div>
+  </div>
+</section>
+
+<section id="fact2" class="book hidden">
+  <div class="kicker">FACT · 02</div><h1>파티 영상의 소리</h1>
+  <div class="fact"><div class="fact-media"><img src="assets/facts/fact-02-sound.webp" alt="손종과 유리잔"></div><p>종은 한 번만 울렸고, 그 직후 숟가락이 유리잔에 부딪히는 <b>비슷한 금속음</b>이 한 번 더 났어.</p></div>
+  <div class="actions"><button class="btn lav" onclick="showFinalTalk()">최종 추리 시작</button></div>
+</section>
+
+<section id="finalTalk" class="hidden">
+  <div class="play">
+    <div class="chat"><div class="chathead"><span>FINAL TALK · 마지막 비교</span><span class="timer" id="timer3">01:00</span></div><div class="messages" id="msgs3"><div class="msg"><b>시스템</b><br><span class="bubble">두 FACT와 모든 기억을 비교해. 기억이 뒤섞인 사람은 딱 한 명이야.</span></div></div><div class="composer"><input id="input3" placeholder="마지막으로 의견 나누기"><button class="btn" onclick="send(3)">보내기</button></div></div>
+    <div class="stack"><div class="final-talk"><b>최종 체크</b><br>틀린 말을 한 사람을 찾는 게 아니라, <b>실제로 있었던 두 장면을 잘못 연결한 기억</b>을 찾아봐.</div><button class="btn lav" onclick="showVote()">투표하러 가기</button></div>
+  </div>
+</section>
+
+<section id="vote" class="book hidden">
+  <div class="kicker">FINAL VOTE</div><h1>누구의 기억이 뒤섞였을까?</h1><div class="lead">한 명을 골라. 본인을 선택해도 돼.</div>
+  <div class="votegrid" id="votegrid"></div>
+  <div class="actions"><button id="voteConfirm" class="btn" disabled onclick="showResult()">이 선택으로 확정</button></div>
+</section>
+
+<section id="result" class="book hidden">
+  <div class="kicker">RESULT</div><h1>기억이 뒤섞인 사람은</h1><div class="result-name" id="resultName"></div><div id="myResult"></div>
+  <div class="memory-grid">
+    <div class="memory"><div class="memory-art"><img src="assets/memory/red-ribbon-cake-box.webp" alt=""></div><small>MIXED MEMORY · 01</small><p>“별사탕 병에는 빨간 리본이 묶여 있었다.”</p><div class="note">실제로 빨간 리본은 <b>케이크 상자</b>에 묶여 있었어.</div></div>
+    <div class="memory"><div class="memory-art"><img src="assets/memory/glass-and-spoon.webp" alt=""></div><small>MIXED MEMORY · 02</small><p>“종이 두 번 울렸다.”</p><div class="note">실제로는 <b>손종 1회 + 유리잔과 숟가락 소리 1회</b>였어.</div></div>
+  </div>
+  <div class="note"><b>사건의 진실</b> · 별사탕은 도난당하지 않았어. 케이크 자리를 만들려고 은색 쟁반을 창가로 옮기는 과정에서 병도 함께 이동했을 뿐이야.</div>
+  <div class="reveal"><h3>이번 판 카드 배분 확인</h3><div class="assignments" id="assignments"></div></div>
+  <div class="actions"><button class="btn soft" onclick="resetSameSettings()">같은 인원으로 새 판</button><button class="btn lav" onclick="backToSetup()">인원 다시 정하기</button></div>
+</section>
+
+</div></main></div>
+
+<script>
+const screens=['guide','intro','mem1','talk1','fact1','mem2','talk2','fact2','finalTalk','vote','result'];
+const meta={guide:['GAME GUIDE','시작 전'],intro:['CASE INTRO','사건 소개'],mem1:['MEMORY 01','기억 1'],talk1:['ROUND 1','대화'],fact1:['FACT 01','사실 공개'],mem2:['MEMORY 02','기억 2'],talk2:['ROUND 2','대화'],fact2:['FACT 02','사실 공개'],finalTalk:['FINAL TALK','최종 대화'],vote:['FINAL VOTE','최종 지목'],result:['RESULT','결과']};
+
+const IMG={
+  jar:'assets/memory/star-candy-jar.webp',
+  cake:'assets/memory/red-ribbon-cake-box.webp',
+  bell:'assets/memory/handbell.webp',
+  glass:'assets/memory/glass-and-spoon.webp',
+  party:'assets/hero/star-candy-party.webp'
+};
+const corruptedCards=[
+  {id:'C1',text:'별사탕 병에는 빨간 리본이 묶여 있었다.',img:IMG.jar},
+  {id:'C2',text:'사진을 찍기 전에 종이 두 번 울렸다.',img:IMG.bell}
+];
+const coreNormal=[
+  {id:'N1',text:'케이크 상자에는 빨간 리본이 묶여 있었다.',img:IMG.cake},
+  {id:'N2',text:'별사탕 병은 은색 쟁반 위에 놓여 있었다.',img:IMG.jar},
+  {id:'N3',text:'종소리를 한 번 들은 뒤 비슷한 금속음을 한 번 더 들었다.',img:IMG.glass},
+  {id:'N4',text:'사진을 찍기 전 은색 쟁반이 창가 쪽으로 옮겨졌다.',img:IMG.party}
+];
+const extraNormal=[
+  {id:'N5',text:'별사탕 병의 리본은 파란색이었다.',img:IMG.jar},
+  {id:'N6',text:'사진을 찍을 때 테이블 위에는 별사탕 병이 없었다.',img:IMG.party},
+  {id:'N7',text:'파티 조명이 잠깐 보랏빛으로 어두워졌다.',img:IMG.party},
+  {id:'N8',text:'창가에서 별사탕 병이 발견됐다.',img:IMG.party},
+  {id:'N9',text:'발견된 병은 처음에 놓여 있던 것과 같은 은색 쟁반 위에 있었다.',img:IMG.jar},
+  {id:'N10',text:'케이크 상자는 사진을 찍을 때까지 테이블 위에 있었다.',img:IMG.cake}
+];
+
+let playerCount=5,myName='플레이어 1',players=[],assignments=[],corruptedIndex=0,myVote=null,timers={};
+
+function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function show(id){screens.forEach(s=>document.getElementById(s).classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.getElementById('crumb').textContent=meta[id][0];document.getElementById('phase').textContent=meta[id][1];window.scrollTo({top:0,behavior:'smooth'})}
+function initCounts(){const w=document.getElementById('counts');w.innerHTML='';[3,4,5,6].forEach(n=>{const b=document.createElement('button');b.className='count'+(n===playerCount?' sel':'');b.textContent=n+'인';b.onclick=()=>{playerCount=n;[...w.children].forEach(x=>x.classList.remove('sel'));b.classList.add('sel')};w.appendChild(b)})}
+function playerName(i){return i===0?myName:'플레이어 '+(i+1)}
+function buildPlayers(){players=Array.from({length:playerCount},(_,i)=>({name:playerName(i)}));const s=document.getElementById('sidePlayers');s.innerHTML='';players.forEach((p,i)=>{const d=document.createElement('div');d.className='player'+(i===0?' me':'');d.innerHTML='<span>'+p.name+'</span>'+(i===0?'<span class="badge">나</span>':'');s.appendChild(d)})}
+function selectNormalCards(){const needed=playerCount*2-2;const extrasNeeded=needed-coreNormal.length;return [...coreNormal,...shuffle(extraNormal).slice(0,Math.max(0,extrasNeeded))]}
+function dealCards(){
+  corruptedIndex=Math.floor(Math.random()*playerCount);
+  assignments=Array.from({length:playerCount},()=>[]);
+  assignments[corruptedIndex]=shuffle(corruptedCards);
+  const normals=shuffle(selectNormalCards());
+  let cursor=0;
+  for(let i=0;i<playerCount;i++){if(i===corruptedIndex)continue;assignments[i]=[normals[cursor++],normals[cursor++]]}
+  assignments=assignments.map(cards=>shuffle(cards));
+}
+function startGame(){
+  const v=document.getElementById('nickname').value.trim();myName=v||'플레이어 1';
+  buildPlayers();dealCards();myVote=null;
+  document.getElementById('introCount').textContent=playerCount+'인 플레이';
+  document.getElementById('introCards').textContent='기억 카드 '+(playerCount*2)+'장';
+  document.getElementById('sideNote').innerHTML='<b>'+playerCount+'인 · '+(playerCount*2)+'장</b><br>한 사람에게만 오염 기억 2장이 함께 배분돼 있어.';
+  resetRoundUI();show('intro')
+}
+function cardHTML(card,label){return '<div class="memory"><div class="memory-art"><img src="'+card.img+'" alt=""></div><small>'+label+'</small><p>'+card.text+'</p></div>'}
+function miniHTML(card,label){return '<div class="mini"><div class="mini-art"><img src="'+card.img+'" alt=""></div><p><b>'+label+'</b><br>'+card.text+'</p></div>'}
+function openMemory1(){document.getElementById('mem1Grid').innerHTML=cardHTML(assignments[0][0],'MEMORY 01');show('mem1')}
+function openMemory2(){document.getElementById('mem2Grid').innerHTML=cardHTML(assignments[0][0],'MEMORY 01')+cardHTML(assignments[0][1],'MEMORY 02');show('mem2')}
+function showTalk(n){
+  if(n===1){document.getElementById('mini1').innerHTML=miniHTML(assignments[0][0],'MY MEMORY 01');buildReady(1);show('talk1');startTimer(90,1)}
+  else{
+    document.getElementById('round2Stack').innerHTML=miniHTML(assignments[0][0],'MY MEMORY 01')+miniHTML(assignments[0][1],'MY MEMORY 02')+'<div class="mini"><p><b>FACT 01</b><br>병은 파란 리본, 케이크 상자는 빨간 리본.</p></div><div class="ready"><div class="ready-title">FACT 02를 볼 준비가 됐어?</div><div class="ready-desc">전원이 준비되면 동시에 공개돼.</div><div id="ready2"></div><button id="readyBtn2" class="btn lav" style="width:100%;margin-top:12px" onclick="readyUp(2)">나도 준비됐어</button></div>';
+    buildReady(2);show('talk2');startTimer(90,2)
+  }
+}
+function send(n){const input=document.getElementById('input'+n),t=input.value.trim();if(!t)return;const d=document.createElement('div');d.className='msg';d.innerHTML='<b></b><br><span class="bubble"></span>';d.querySelector('b').textContent=myName;d.querySelector('.bubble').textContent=t;document.getElementById('msgs'+n).appendChild(d);input.value=''}
+function buildReady(n){const w=document.getElementById('ready'+n);if(!w)return;w.innerHTML='';players.forEach((p,i)=>{const r=document.createElement('div');r.className='ready-row';r.id='r'+n+'_'+i;r.innerHTML='<span>'+p.name+'</span><span>대기</span>';w.appendChild(r)});const btn=document.getElementById('readyBtn'+n);if(btn){btn.disabled=false;btn.textContent='나도 준비됐어'}}
+function readyUp(n){const btn=document.getElementById('readyBtn'+n);btn.disabled=true;btn.textContent='다른 플레이어 기다리는 중…';players.forEach((p,i)=>setTimeout(()=>{const r=document.getElementById('r'+n+'_'+i);if(r){r.lastElementChild.textContent='준비 완료';r.lastElementChild.className='ok'}if(i===players.length-1)setTimeout(()=>show(n===1?'fact1':'fact2'),350)},220*(i+1)))}
+function startTimer(sec,n){clearInterval(timers[n]);let t=sec;const el=document.getElementById('timer'+n);const tick=()=>{if(!el)return;el.textContent=String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0');if(t<=0){clearInterval(timers[n]);return}t--};tick();timers[n]=setInterval(tick,1000)}
+function showFinalTalk(){show('finalTalk');startTimer(60,3)}
+function showVote(){const g=document.getElementById('votegrid');g.innerHTML='';myVote=null;document.getElementById('voteConfirm').disabled=true;players.forEach((p,i)=>{const b=document.createElement('button');b.className='vote';b.textContent=p.name;b.onclick=()=>{myVote=i;[...g.children].forEach(x=>x.classList.remove('sel'));b.classList.add('sel');document.getElementById('voteConfirm').disabled=false};g.appendChild(b)});show('vote')}
+function showResult(){
+  const correct=players[corruptedIndex].name;
+  document.getElementById('resultName').textContent=correct;
+  const ok=myVote===corruptedIndex;
+  document.getElementById('myResult').innerHTML='<div class="result-banner '+(ok?'win':'lose')+'">'+(ok?'기억 복구 성공! 정답을 맞혔어.':'이번에는 '+players[myVote].name+'을 골랐어. 다음 판엔 더 잘 섞일지도!')+'</div>';
+  const w=document.getElementById('assignments');w.innerHTML='';
+  players.forEach((p,i)=>{const d=document.createElement('div');d.className='assign'+(i===corruptedIndex?' corrupted':'');d.innerHTML='<b>'+p.name+(i===corruptedIndex?' · 오염 기억':'')+'</b>'+assignments[i].map(c=>'• '+c.text).join('<br>');w.appendChild(d)});
+  show('result')
+}
+function resetRoundUI(){Object.values(timers).forEach(clearInterval);timers={};['msgs1','msgs2','msgs3'].forEach((id,idx)=>{const e=document.getElementById(id);if(e)e.innerHTML='<div class="msg"><b>시스템</b><br><span class="bubble">'+(idx===0?'각자 가진 첫 번째 기억을 비교해봐.':idx===1?'FACT 01과 두 번째 기억까지 함께 비교해봐.':'두 FACT와 모든 기억을 비교해. 기억이 뒤섞인 사람은 딱 한 명이야.')+'</span></div>'})}
+function resetSameSettings(){dealCards();myVote=null;resetRoundUI();document.getElementById('introCount').textContent=playerCount+'인 플레이';document.getElementById('introCards').textContent='기억 카드 '+(playerCount*2)+'장';show('intro')}
+function backToSetup(){resetRoundUI();show('guide')}
+initCounts();buildPlayers();show('guide');
+</script>
+</body></html>
