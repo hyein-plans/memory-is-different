@@ -1,0 +1,38 @@
+name: Rebuild memory assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '_asset_src/**'
+      - '.github/workflows/rebuild-memory-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode memory images
+        shell: bash
+        run: |
+          mkdir -p assets/memory
+          base64 -d _asset_src/jar.b64 > assets/memory/star-candy-jar.webp
+          base64 -d _asset_src/cake.b64 > assets/memory/red-ribbon-cake-box.webp
+          base64 -d _asset_src/bell.b64 > assets/memory/handbell.webp
+          base64 -d _asset_src/glass.b64 > assets/memory/glass-and-spoon.webp
+          file assets/memory/*.webp
+      - name: Commit rebuilt images
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/memory/*.webp
+          if git diff --cached --quiet; then
+            echo "No asset changes"
+          else
+            git commit -m "Fix memory card image assets"
+            git push
+          fi
