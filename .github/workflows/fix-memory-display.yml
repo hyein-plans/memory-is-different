@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Remove destructive memory image filters
+      - name: Normalize memory image display and bust stale cache
         shell: python
         run: |
           from pathlib import Path
@@ -23,6 +23,17 @@ jobs:
           s = s.replace('filter:saturate(.18) sepia(.22) contrast(.92) blur(.25px);opacity:.76;transform:scale(1.02)', 'filter:none;opacity:1;transform:none;image-rendering:auto')
           s = s.replace('filter:saturate(.18) sepia(.2);opacity:.76', 'filter:none;opacity:1;image-rendering:auto')
           s = s.replace('.memory-art:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,250,240,.2),rgba(230,218,199,.2))}', '.memory-art:after{content:none}')
+          paths = [
+              'assets/memory/star-candy-jar.webp',
+              'assets/memory/red-ribbon-cake-box.webp',
+              'assets/memory/handbell.webp',
+              'assets/memory/glass-and-spoon.webp',
+          ]
+          for path in paths:
+              s = s.replace(path + '?v=2', path + '?v=3')
+              s = s.replace(path + '?v=1', path + '?v=3')
+              if path + '?v=3' not in s:
+                  s = s.replace(path, path + '?v=3')
           p.write_text(s, encoding='utf-8')
       - name: Commit display fix
         shell: bash
@@ -31,8 +42,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
           if git diff --cached --quiet; then
-            echo "No CSS changes needed"
+            echo "No display changes needed"
           else
-            git commit -m "Remove broken-looking memory image filters"
+            git commit -m "Refresh repaired memory images"
             git push
           fi
