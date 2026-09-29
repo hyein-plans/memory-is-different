@@ -151,8 +151,8 @@ h1{font-size:38px;letter-spacing:-1px;margin:6px 0 12px}.lead{font-size:17px;lin
 <section id="result" class="book hidden">
   <div class="kicker">RESULT</div><h1>기억이 뒤섞인 사람은</h1><div class="result-name" id="resultName"></div><div id="myResult"></div>
   <div class="memory-grid">
-    <div class="memory"><div class="memory-art"><img src="assets/memory/red-ribbon-cake-box.webp" alt=""></div><small>MIXED MEMORY · 01</small><p>“별사탕 병에는 빨간 리본이 묶여 있었다.”</p><div class="note">실제로 빨간 리본은 <b>케이크 상자</b>에 묶여 있었어.</div></div>
-    <div class="memory"><div class="memory-art"><img src="assets/memory/glass-and-spoon.webp" alt=""></div><small>MIXED MEMORY · 02</small><p>“종이 두 번 울렸다.”</p><div class="note">실제로는 <b>손종 1회 + 유리잔과 숟가락 소리 1회</b>였어.</div></div>
+    <div class="memory"><div class="memory-art"><img src="assets/memory/red-ribbon-cake-box.webp?v=3" alt=""></div><small>MIXED MEMORY · 01</small><p>“별사탕 병에는 빨간 리본이 묶여 있었다.”</p><div class="note">실제로 빨간 리본은 <b>케이크 상자</b>에 묶여 있었어.</div></div>
+    <div class="memory"><div class="memory-art"><img src="assets/memory/glass-and-spoon.webp?v=3" alt=""></div><small>MIXED MEMORY · 02</small><p>“종이 두 번 울렸다.”</p><div class="note">실제로는 <b>손종 1회 + 유리잔과 숟가락 소리 1회</b>였어.</div></div>
   </div>
   <div class="note"><b>사건의 진실</b> · 별사탕은 도난당하지 않았어. 케이크 자리를 만들려고 은색 쟁반을 창가로 옮기는 과정에서 병도 함께 이동했을 뿐이야.</div>
   <div class="reveal"><h3>이번 판 카드 배분 확인</h3><div class="assignments" id="assignments"></div></div>
@@ -166,10 +166,10 @@ const screens=['guide','intro','mem1','talk1','fact1','mem2','talk2','fact2','fi
 const meta={guide:['GAME GUIDE','시작 전'],intro:['CASE INTRO','사건 소개'],mem1:['MEMORY 01','기억 1'],talk1:['ROUND 1','대화'],fact1:['FACT 01','사실 공개'],mem2:['MEMORY 02','기억 2'],talk2:['ROUND 2','대화'],fact2:['FACT 02','사실 공개'],finalTalk:['FINAL TALK','최종 대화'],vote:['FINAL VOTE','최종 지목'],result:['RESULT','결과']};
 
 const IMG={
-  jar:'assets/memory/star-candy-jar.webp',
-  cake:'assets/memory/red-ribbon-cake-box.webp',
-  bell:'assets/memory/handbell.webp',
-  glass:'assets/memory/glass-and-spoon.webp',
+  jar:'assets/memory/star-candy-jar.webp?v=3',
+  cake:'assets/memory/red-ribbon-cake-box.webp?v=3',
+  bell:'assets/memory/handbell.webp?v=3',
+  glass:'assets/memory/glass-and-spoon.webp?v=3',
   party:'assets/hero/star-candy-party.webp'
 };
 const corruptedCards=[
