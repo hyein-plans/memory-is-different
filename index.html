@@ -35,27 +35,27 @@ h1{font-size:38px;letter-spacing:-1px;margin:6px 0 12px}.lead{font-size:17px;lin
 .note{margin-top:18px;padding:14px 16px;border-radius:16px;background:#f1ecff;border:1px solid #cfc5ef;font-size:13px;line-height:1.6}
 .actions{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}.btn{border:0;border-radius:14px;padding:13px 18px;background:#5b514a;color:#fff;font-weight:900;box-shadow:0 6px 0 #3f3833}
 .btn.lav{background:var(--lav);box-shadow:0 6px 0 var(--lav-dark)}.btn.soft{background:#fff;color:#5b514a;border:1px solid #d7cbbb;box-shadow:none}.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
-.hero,.fact-media{margin-top:24px;border-radius:22px;overflow:hidden;border:2px solid #bda98d;background:#f5eddd}.hero img,.fact-media img{width:100%;display:block}
+.hero,.fact-media{margin:24px auto 0;border-radius:22px;overflow:hidden;border:2px solid #bda98d;background:#f5eddd}.hero{max-width:900px}.hero img,.fact-media img{width:100%;height:auto;display:block;image-rendering:auto}.fact-media{margin:0;aspect-ratio:16/10;border:0;border-radius:0}.fact-media img{height:100%;object-fit:cover;object-position:center}
 .status-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.pill{padding:7px 10px;border-radius:999px;background:#fff;border:1px solid #ddd0bf;font-size:12px;font-weight:850}
 .memory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:22px}
 .memory{background:#fffdf7;border:2px solid #b9a793;border-radius:20px;padding:18px;min-height:300px;box-shadow:0 10px 18px rgba(79,68,59,.08);transform:rotate(-.4deg)}
-.memory:nth-child(even){transform:rotate(.5deg)}.memory-art{height:180px;border-radius:15px;background:#f5ecdc;overflow:hidden;border:1px solid #e1d3bf;position:relative}
-.memory-art img{width:100%;height:100%;object-fit:cover;filter:none;opacity:1;transform:none;image-rendering:auto}
+.memory:nth-child(even){transform:rotate(.5deg)}.memory-art{height:235px;border-radius:15px;background:#faf4e9;overflow:hidden;border:1px solid #e1d3bf;position:relative;padding:10px}
+.memory-art img{width:100%;height:100%;object-fit:contain;filter:none;opacity:1;transform:none;image-rendering:auto}
 .memory-art:after{content:none}
 .memory small{display:block;margin-top:14px;font-size:11px;font-weight:950;letter-spacing:.12em;color:#8a7c70}.memory p{font-size:18px;line-height:1.6;font-weight:850;margin:10px 0 0}
 .play{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px}.chat{min-height:560px;border:1px solid #d9cbb8;border-radius:22px;background:rgba(255,253,247,.85);display:flex;flex-direction:column;overflow:hidden}
 .chathead{padding:16px 18px;border-bottom:1px dashed #d2c3b0;font-weight:900;display:flex;justify-content:space-between}.timer{font-variant-numeric:tabular-nums;color:#7a6a60}
 .messages{flex:1;padding:18px;overflow:auto}.msg{margin-bottom:12px}.msg b{font-size:12px;color:#7d6f65}.bubble{display:inline-block;margin-top:4px;background:#fff;border:1px solid #e1d5c6;border-radius:14px;padding:10px 12px;line-height:1.45}
 .composer{display:flex;gap:8px;padding:14px;border-top:1px dashed #d2c3b0}.composer input{flex:1;padding:12px;border:1px solid #d9ccbc;border-radius:12px;background:#fff}
-.stack{display:flex;flex-direction:column;gap:12px}.mini{background:#fffdf7;border:1px solid #d8cbbb;border-radius:16px;padding:12px}.mini-art{height:100px;border-radius:12px;overflow:hidden;background:#f4ecdd}.mini-art img{width:100%;height:100%;object-fit:cover;filter:none;opacity:1;image-rendering:auto}.mini p{font-size:13px;line-height:1.5;font-weight:750;margin:8px 0 0}
+.stack{display:flex;flex-direction:column;gap:12px}.mini{background:#fffdf7;border:1px solid #d8cbbb;border-radius:16px;padding:12px}.mini-art{height:125px;border-radius:12px;overflow:hidden;background:#faf4e9;padding:8px}.mini-art img{width:100%;height:100%;object-fit:contain;filter:none;opacity:1;image-rendering:auto}.mini p{font-size:13px;line-height:1.5;font-weight:750;margin:8px 0 0}
 .ready{padding:16px;border:1px solid #d6c8b5;border-radius:16px;background:#fffdf7}.ready-title{font-weight:950}.ready-desc{font-size:12px;color:var(--muted);margin-top:4px}.ready-row{display:flex;justify-content:space-between;padding:7px 0;font-size:13px}.ready-row .ok{color:var(--green);font-weight:900}
-.fact{margin-top:22px;border:2px solid #aaa0c7;border-radius:20px;overflow:hidden;background:#f1ecff}.fact p{padding:18px;margin:0;font-size:17px;line-height:1.7}
+.fact{margin-top:22px;border:2px solid #aaa0c7;border-radius:20px;overflow:hidden;background:#f1ecff}.fact p{background:#f1ecff}.fact-photo-hint{font-size:12px;padding:10px 18px;background:#f6f0fc;color:#73658b;border-bottom:1px solid #ddd4f0}.fact p{padding:18px;margin:0;font-size:17px;line-height:1.7}
 .final-talk{padding:16px;border:1px solid #cfc5ef;border-radius:16px;background:#f7f3ff;margin-bottom:14px;font-size:13px;line-height:1.55}
 .votegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.vote{padding:18px;border:2px solid #d5c7b4;border-radius:16px;background:#fffdf8;font-weight:900}.vote.sel{background:#eee9ff;border-color:#897ab5}
 .result-name{font-size:48px;font-weight:950;margin:8px 0 6px}.result-banner{padding:14px 16px;border-radius:16px;margin:14px 0;font-weight:900}.result-banner.win{background:#e7f2e8;border:1px solid #bcd5c1;color:#52775a}.result-banner.lose{background:#f4e7e2;border:1px solid #dfc5ba;color:#805e51}
 .reveal{margin-top:20px;border-top:1px dashed #cdbda8;padding-top:18px}.reveal h3{margin:0 0 12px}.assignments{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.assign{padding:12px;border:1px solid #d9cbbb;border-radius:14px;background:rgba(255,255,255,.55);font-size:13px;line-height:1.5}.assign.corrupted{border-color:#b8add8;background:#f2eeff}.assign b{display:block;margin-bottom:5px}
 .hidden{display:none!important}
-@media(max-width:900px){.app{grid-template-columns:1fr}.side{display:none}main{padding:18px}.setup-grid,.memory-grid,.play{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.votegrid{grid-template-columns:1fr 1fr}.assignments{grid-template-columns:1fr}h1{font-size:31px}}
+@media(max-width:900px){.memory-art{height:220px}.fact-media{aspect-ratio:4/3}.app{grid-template-columns:1fr}.side{display:none}main{padding:18px}.setup-grid,.memory-grid,.play{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.votegrid{grid-template-columns:1fr 1fr}.assignments{grid-template-columns:1fr}h1{font-size:31px}}
 </style>
 </head>
 <body>
@@ -91,7 +91,7 @@ h1{font-size:38px;letter-spacing:-1px;margin:6px 0 12px}.lead{font-size:17px;lin
   <div class="kicker">CASE 01</div><h1>사라진 별사탕</h1>
   <div class="lead">어젯밤 열린 작은 별빛 파티. 테이블 한가운데 있던 별사탕 병이 잠시 사라졌다가 창가에서 발견됐어. 그런데 당시 상황을 떠올려보니 사람들의 기억이 조금씩 달라.</div>
   <div class="status-strip"><span class="pill" id="introCount"></span><span class="pill" id="introCards"></span><span class="pill">오염된 기억의 주인 1명</span></div>
-  <div class="hero"><img src="assets/hero/star-candy-party.webp" alt="달빛 아래 별사탕 파티"></div>
+  <div class="hero"><img src="assets/hero/star-candy-party.webp?v=4" alt="달빛 아래 별사탕 파티"></div>
   <div class="note"><b>목표</b> · 네 기억도 정상인지 오염인지 알 수 없어. 사람들의 말을 비교해서 한 명을 찾아봐.</div>
   <div class="actions"><button class="btn" onclick="openMemory1()">첫 번째 기억 확인</button></div>
 </section>
@@ -99,7 +99,7 @@ h1{font-size:38px;letter-spacing:-1px;margin:6px 0 12px}.lead{font-size:17px;lin
 <section id="mem1" class="book hidden">
   <div class="kicker">MY MEMORY · 01</div><h1>첫 번째 기억</h1>
   <div class="memory-grid" id="mem1Grid"></div>
-  <div class="note">그림은 정확한 기록이 아니라 <b>흐릿한 기억의 이미지</b>야. 판단은 카드 문장을 중심으로 해줘.</div>
+  <div class="note">기억카드 삽화는 분위기를 보여주는 그림이야. <b>기억의 정확한 내용은 카드 문장</b>을 기준으로 비교해줘.</div>
   <div class="actions"><button class="btn" onclick="showTalk(1)">대화 시작</button></div>
 </section>
 
@@ -112,7 +112,7 @@ h1{font-size:38px;letter-spacing:-1px;margin:6px 0 12px}.lead{font-size:17px;lin
 
 <section id="fact1" class="book hidden">
   <div class="kicker">FACT · 01</div><h1>남아 있던 파티 사진</h1>
-  <div class="fact"><div class="fact-media"><img src="assets/facts/fact-01-party-photo.webp" alt="파티 사진"></div><p>사진 속 별사탕 병에는 <b>파란 리본</b>이, 바로 옆 케이크 상자에는 <b>빨간 리본</b>이 묶여 있어.</p></div>
+  <div class="fact"><div class="fact-photo-hint">사진 기록 · 별사탕 병의 파란 리본과 케이크 상자의 빨간 리본을 비교해봐.</div><div class="fact-media"><img src="assets/hero/star-candy-party.webp?v=4" alt="파란 리본 별사탕 병과 빨간 리본 케이크 상자가 있는 파티 장면"></div><p>사진 속 별사탕 병에는 <b>파란 리본</b>이, 바로 옆 케이크 상자에는 <b>빨간 리본</b>이 묶여 있어.</p></div>
   <div class="actions"><button class="btn" onclick="openMemory2()">두 번째 기억 확인</button></div>
 </section>
 
@@ -131,7 +131,7 @@ h1{font-size:38px;letter-spacing:-1px;margin:6px 0 12px}.lead{font-size:17px;lin
 
 <section id="fact2" class="book hidden">
   <div class="kicker">FACT · 02</div><h1>파티 영상의 소리</h1>
-  <div class="fact"><div class="fact-media"><img src="assets/facts/fact-02-sound.webp" alt="손종과 유리잔"></div><p>종은 한 번만 울렸고, 그 직후 숟가락이 유리잔에 부딪히는 <b>비슷한 금속음</b>이 한 번 더 났어.</p></div>
+  <div class="fact"><div class="fact-media"><img src="assets/facts/fact-02-sound.webp?v=4" alt="손종과 유리잔" onerror="this.onerror=null;this.src='assets/hero/star-candy-party.webp?v=4'"></div><p>종은 한 번만 울렸고, 그 직후 숟가락이 유리잔에 부딪히는 <b>비슷한 금속음</b>이 한 번 더 났어.</p></div>
   <div class="actions"><button class="btn lav" onclick="showFinalTalk()">최종 추리 시작</button></div>
 </section>
 
